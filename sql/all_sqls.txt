@@ -1,0 +1,64 @@
+ 
+
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    role ENUM('user', 'admin') NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
+CREATE TABLE theory_marks (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    course_name VARCHAR(255) NOT NULL,
+    course_code VARCHAR(50) NOT NULL,
+    ct_marks INT NOT NULL,
+    attendance_marks INT NOT NULL,
+    midterm_marks INT NOT NULL,
+    target_marks INT NOT NULL,
+    remaining_marks INT NOT NULL
+);
+
+CREATE TABLE lab_marks (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    course_name VARCHAR(255) NOT NULL,
+    course_code VARCHAR(50) NOT NULL,
+    lab_assessment_marks INT NOT NULL,
+    midterm_marks INT NOT NULL,
+    target_marks INT NOT NULL,
+    remaining_marks INT NOT NULL
+);
+
+CREATE TABLE projects (
+    id INT AUTO_INCREMENT PRIMARY KEY,          -- Unique ID for each project
+    project_name VARCHAR(255) NOT NULL,         -- Name of the project
+    project_status ENUM('complete', 'incomplete', 'ongoing') NOT NULL, -- Status of the project
+    project_link VARCHAR(255) DEFAULT NULL,     -- Optional link for the project
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP -- Timestamp when the project was added
+);
+
+CREATE TABLE skills (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    skill_name VARCHAR(255) NOT NULL,
+    start_date DATE NOT NULL,
+    completion_date DATE NOT NULL
+);
+
+CREATE TABLE cv (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    phone VARCHAR(15) NOT NULL,
+    address VARCHAR(255) NOT NULL,
+    skills TEXT NOT NULL,
+    experience TEXT NOT NULL,
+    education TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+ALTER TABLE cv
+ADD COLUMN projects TEXT NOT NULL,
+ADD COLUMN hobbies TEXT NOT NULL,
+ADD COLUMN volunteer_work TEXT NOT NULL;
